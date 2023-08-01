@@ -1,2 +1,3 @@
-# sweep-testing
-testing sweep
+# SugarCRM Export
+
+A utitlity to Export data from Sugar CRM modules.  
