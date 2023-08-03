@@ -24,6 +24,7 @@ export type FetchResponse = {
 };
 
 const apiVersion = process.env.API_VERSION || '10';
+const API_URL = `${process.env.HOST}/rest/v${apiVersion}`;
 
 // Then the functions auth and fetchData as before...
 
@@ -39,7 +40,7 @@ export const auth = async ({ host, username, password }: AuthParams) => {
 
     // Make the request to get the auth token
     const response = await axios.post(
-      `${host}/rest/v${apiVersion}/oauth2/token`,
+      `${API_URL}/oauth2/token`,
       {
         grant_type: "password",
         client_id: "sugar", // this could be different depending on your setup
@@ -72,7 +73,7 @@ export const fetchData = async ({
   max,
   token,
 }: FetchDataParams): Promise<FetchResponse> => {
-  const uri = `${host}/rest/v${apiVersion}/${module}?offset=${offset}&max_num=${max}`;
+  const uri = `${API_URL}/${module}?offset=${offset}&max_num=${max}`;
   try {
     // Config for fetching data
     const config = {
