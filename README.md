@@ -8,11 +8,12 @@ Before running this utility, make sure to have `Node.js` and `npm` installed on 
 
 ## Environment Variables
 
-Set up the .env file with your SugarCRM credentials and host.
+Set up the .env file with your SugarCRM credentials, host, and API version.
 ```plaintext
 USERNAME=your_username
 PASSWORD=your_password
 HOST=your_host
+API_VERSION=your_api_version
 ```
  
 ## Usage
