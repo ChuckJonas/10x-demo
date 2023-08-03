@@ -13,7 +13,7 @@ dotenv.config();
 const argv = yargs(hideBin(process.argv)).argv;
 
 // Destructuring required args from argv
-const { module: moduleName, output, offset, max } = argv as any;
+const { module: moduleName, output, offset = 0, max } = argv as any;
 
 const run = async () => {
   try {
