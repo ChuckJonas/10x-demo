@@ -7,6 +7,10 @@ const getModuleData = async (params: GetModuleDataParams): Promise<any[]> => {
   let offset = 0;
   let allRecords: any[] = [];
 
+  // Get total count of records
+  const { data: { record_count } } = await axios.get(`/rest/v10/${params.module}/count`);
+  console.log(`Pulling data from ${params.module}.  Total Records: ${record_count}.  Starting from offset ${offset}`);
+
   // Helper function
   const fetchAndAggregateData = async () => {
     try {
