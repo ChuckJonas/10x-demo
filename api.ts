@@ -1,5 +1,6 @@
 // Add the axios import at the top
 import axios from "axios";
+import { process } from "node";
 
 // Define TypeScript type for AuthParams
 type AuthParams = {
@@ -22,6 +23,9 @@ export type FetchResponse = {
   records: any[];
 };
 
+const apiVersion = process.env.API_VERSION || '10';
+const API_URL = `${process.env.HOST}/rest/v${apiVersion}`;
+
 // Then the functions auth and fetchData as before...
 
 // Define the auth function to get the access token from SugarCRM REST API v10
@@ -36,7 +40,7 @@ export const auth = async ({ host, username, password }: AuthParams) => {
 
     // Make the request to get the auth token
     const response = await axios.post(
-      `${host}/rest/v10/oauth2/token`,
+      `${API_URL}/oauth2/token`,
       {
         grant_type: "password",
         client_id: "sugar", // this could be different depending on your setup
@@ -69,7 +73,7 @@ export const fetchData = async ({
   max,
   token,
 }: FetchDataParams): Promise<FetchResponse> => {
-  const uri = `${host}/rest/v10/${module}?offset=${offset}&max_num=${max}`;
+  const uri = `${API_URL}/${module}?offset=${offset}&max_num=${max}`;
   try {
     // Config for fetching data
     const config = {
