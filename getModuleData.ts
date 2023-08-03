@@ -1,10 +1,9 @@
 import { FetchDataParams, fetchData } from "./api";
 
-type GetModuleDataParams = Omit<FetchDataParams, "offset" | "max">;
+type GetModuleDataParams = Omit<FetchDataParams, "max">;
 
-const getModuleData = async (params: GetModuleDataParams): Promise<any[]> => {
+const getModuleData = async (params: GetModuleDataParams & { offset: number }): Promise<any[]> => {
   const MAX_RECORDS = 1000;
-  let offset = 0;
   let allRecords: any[] = [];
 
   // Helper function
